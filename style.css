@@ -1,0 +1,234 @@
+/* ================================================
+   CAMINO ESTOICO — LANDING PAGE
+   style.css
+   ================================================ */
+
+:root {
+  --gold:       #c9a84c;
+  --gold-light: #f0cc6e;
+  --gold-dim:   #7a5e20;
+  --black:      #0a0805;
+  --white:      #f5f0e8;
+  --ember:      #ff4500;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  background: url('bg.jpg') center center / cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  position: relative;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55) 0%,
+    rgba(10,5,0,0.72) 50%,
+    rgba(0,0,0,0.82) 100%
+  );
+  z-index: 0;
+}
+
+/* ── CARD ── */
+.card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 56px 40px 52px;
+  max-width: 480px;
+  width: 92vw;
+  background: rgba(10, 6, 2, 0.55);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: cardIn .9s cubic-bezier(.22,1,.36,1) both;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: .7;
+}
+.card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* ── PERFIL ── */
+.profile-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp .7s .2s ease both;
+}
+
+.profile-ring {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(
+    var(--gold-light) 0%,
+    var(--ember) 30%,
+    var(--gold) 55%,
+    var(--gold-dim) 80%,
+    var(--gold-light) 100%
+  );
+  animation: spinRing 6s linear infinite;
+  box-shadow:
+    0 0 22px rgba(201,168,76,.35),
+    0 0 50px rgba(255,69,0,.15);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--black);
+  display: block;
+}
+
+.profile-name {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(201,168,76,.5);
+  text-transform: uppercase;
+}
+
+/* ── DIVISOR ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  animation: fadeUp .7s .35s ease both;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.4), transparent);
+}
+
+.divider-icon {
+  font-size: 14px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 6px var(--gold));
+}
+
+/* ── BOTÃO CTA ── */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 18px 28px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #8b5e0a 0%, #c9a84c 40%, #f0cc6e 60%, #c9a84c 100%);
+  background-size: 200% 200%;
+  color: var(--black);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(11px, 3.2vw, 14px);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  box-shadow:
+    0 4px 20px rgba(201,168,76,.35),
+    0 0 0 1px rgba(201,168,76,.2),
+    inset 0 1px 0 rgba(255,255,255,.2);
+  animation:
+    fadeUp .7s .5s ease both,
+    shimmer 3s 1.5s ease infinite;
+  transition: transform .15s, box-shadow .2s;
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255,255,255,.25) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform .5s;
+}
+
+.cta-btn:hover::before { transform: translateX(100%); }
+.cta-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 8px 30px rgba(201,168,76,.5),
+    0 0 0 1px rgba(201,168,76,.4),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+.cta-btn:active { transform: translateY(0) scale(.99); }
+
+.cta-text { flex: 1; text-align: center; }
+
+.cta-arrow {
+  font-size: 18px;
+  font-family: sans-serif;
+  transition: transform .2s;
+}
+.cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+/* ── ANIMAÇÕES ── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 400px) {
+  .card { padding: 44px 24px 40px; gap: 28px; }
+  .profile-ring { width: 110px; height: 110px; }
+  .profile-name { font-size: 13px; }
+}
